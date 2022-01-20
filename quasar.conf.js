@@ -44,6 +44,8 @@ module.exports = configure(function (ctx) {
     build: {
       vueRouterMode: "hash", // available values: 'hash', 'history'
 
+      devtool: "source-map",
+
       // transpile: false,
       // publicPath: '/',
 

@@ -84,14 +84,7 @@ export default defineComponent({
   setup() {
     const $q = useQuasar();
 
-    const nullUser = {
-      firstName: "",
-      lastName: "",
-      phoneNumber: "",
-      age: null,
-    };
-
-    const user = ref(nullUser);
+    const user = ref({});
     const accept = ref(false);
 
     return {
@@ -117,7 +110,7 @@ export default defineComponent({
       },
 
       onReset() {
-        user.value = nullUser;
+        user.value = {};
         accept.value = false;
       },
     };

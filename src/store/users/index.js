@@ -1,25 +1,27 @@
-import Constant from "./constant";
+import { USER } from "../constant";
 
 export default {
   namespaced: true,
 
   getters: {
-    [Constant.GET_USER]: (state) => state.user,
+    [USER.GET]: (state) => state.user,
   },
 
   mutations: {
-    [Constant.SET_USER]: (state, payload) => {
+    [USER.SET]: (state, payload) => {
       state.user = payload;
     },
   },
 
   actions: {
-    [Constant.SET_USER]: ({ commit }, payload) => {
-      commit(Constant.SET_USER, payload);
+    [USER.SET]: ({ commit }, payload) => {
+      commit(USER.SET, payload);
     },
   },
 
   state: {
-    user: null,
+    user: {
+      name: "alice",
+    },
   },
 };

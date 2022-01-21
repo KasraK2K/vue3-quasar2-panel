@@ -5,14 +5,34 @@
 </template>
 
 <script>
-import { defineComponent, inject } from "vue";
+import { defineComponent, inject, onMounted, computed } from "vue";
+import { useStore } from "vuex";
+import { USER, namespace } from "/src/store/constant";
 
 export default defineComponent({
   name: "Dashboard",
 
   setup() {
     const settings = inject("settings");
-    return { settings };
+
+    /* ---------------------------------- VUEX ---------------------------------- */
+    const store = useStore();
+    const setUser = (payload) =>
+      store.dispatch(namespace(USER, USER.SET), payload);
+    const getUser = computed(() => store.getters[namespace(USER, USER.GET)]);
+
+    onMounted(() => {
+      setUser({
+        name: "John Doe",
+      });
+      const user = getUser.value;
+    });
+
+    return {
+      settings,
+      setUser,
+      getUser,
+    };
   },
 });
 </script>

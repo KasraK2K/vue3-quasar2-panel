@@ -1,7 +1,7 @@
 const routes = [
   {
     path: "/",
-    component: () => import("src/layouts/DefaultLayout.vue"),
+    component: () => import("layouts/DefaultLayout.vue"),
     children: [
       {
         path: "",
@@ -13,7 +13,7 @@ const routes = [
 
   {
     path: "/users",
-    component: () => import("src/layouts/DefaultLayout.vue"),
+    component: () => import("layouts/DefaultLayout.vue"),
     children: [
       {
         path: "",
@@ -30,7 +30,7 @@ const routes = [
 
   {
     path: "/auth",
-    component: () => import("src/layouts/CleanLayout.vue"),
+    component: () => import("layouts/CleanLayout.vue"),
     children: [
       {
         path: "login",

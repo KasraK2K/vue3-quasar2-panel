@@ -1,9 +1,9 @@
 <template>
   <div class="q-ma-lg">
     <q-card class="q-pa-lg">
-      <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
-        <div class="row">
-          <div class="col col-md-6 q-pr-sm">
+      <q-form @submit="onSubmit" @reset="onReset">
+        <div class="q-col-gutter-x-md row items-star">
+          <div class="col col-md-6">
             <q-input
               outlined
               v-model.trim="user.firstName"
@@ -15,7 +15,7 @@
             />
           </div>
 
-          <div class="col col-md-6 q-pr-sm">
+          <div class="col col-md-6">
             <q-input
               outlined
               v-model.trim="user.lastName"
@@ -27,7 +27,7 @@
             />
           </div>
 
-          <div class="col col-md-6 q-pr-sm">
+          <div class="col col-md-6">
             <q-input
               outlined
               v-model.trim="user.phoneNumber"
@@ -39,7 +39,7 @@
             />
           </div>
 
-          <div class="col col-md-6 q-pl-sm">
+          <div class="col col-md-6">
             <q-input
               outlined
               type="number"
@@ -53,6 +53,7 @@
             />
           </div>
         </div>
+
         <div class="row">
           <q-toggle v-model="accept" label="I accept the license and terms" />
         </div>
@@ -84,35 +85,45 @@ export default defineComponent({
   setup() {
     const $q = useQuasar();
 
-    const user = ref({});
+    const user = ref({
+      firstName: "",
+      lastName: "",
+      phoneNumber: "",
+      age: null,
+    });
     const accept = ref(false);
+    const onSubmit = () => {
+      if (accept.value !== true) {
+        $q.notify({
+          color: "red-5",
+          textColor: "white",
+          icon: "warning",
+          message: "You need to accept the license and terms first",
+        });
+      } else {
+        $q.notify({
+          color: "green-4",
+          textColor: "white",
+          icon: "cloud_done",
+          message: "Submitted",
+        });
+      }
+    };
+    const onReset = () => {
+      user.value = {
+        firstName: "",
+        lastName: "",
+        phoneNumber: "",
+        age: null,
+      };
+      accept.value = false;
+    };
 
     return {
       user,
       accept,
-
-      onSubmit() {
-        if (accept.value !== true) {
-          $q.notify({
-            color: "red-5",
-            textColor: "white",
-            icon: "warning",
-            message: "You need to accept the license and terms first",
-          });
-        } else {
-          $q.notify({
-            color: "green-4",
-            textColor: "white",
-            icon: "cloud_done",
-            message: "Submitted",
-          });
-        }
-      },
-
-      onReset() {
-        user.value = {};
-        accept.value = false;
-      },
+      onSubmit,
+      onReset,
     };
   },
 });

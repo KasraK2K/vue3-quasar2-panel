@@ -10,7 +10,7 @@
               label="First Name *"
               lazy-rules
               :rules="[
-                (val) => (val && val.length > 0) || 'Please type something',
+                (val) => validation.isString(val) || 'Please type something',
               ]"
             />
           </div>
@@ -22,7 +22,7 @@
               label="Last Name *"
               lazy-rules
               :rules="[
-                (val) => (val && val.length > 0) || 'Please type something',
+                (val) => validation.isString(val) || 'Please type something',
               ]"
             />
           </div>
@@ -34,7 +34,7 @@
               label="Phone *"
               lazy-rules
               :rules="[
-                (val) => (val && val.length > 0) || 'Please type something',
+                (val) => validation.isString(val) || 'Please type something',
               ]"
             />
           </div>
@@ -47,8 +47,8 @@
               label="Your age *"
               lazy-rules
               :rules="[
-                (val) => (val !== null && val !== '') || 'Please type your age',
-                (val) => (val > 0 && val < 100) || 'Please type a real age',
+                (val) => validation.isNumber(val) || 'Please type your age',
+                (val) => validation.isAge(val) || 'Please type a real age',
               ]"
             />
           </div>
@@ -78,6 +78,7 @@
 <script>
 import { useQuasar } from "quasar";
 import { defineComponent, ref } from "vue";
+import { validation } from "boot/validation";
 
 export default defineComponent({
   name: "CreateUser",
@@ -124,6 +125,7 @@ export default defineComponent({
       accept,
       onSubmit,
       onReset,
+      validation,
     };
   },
 });

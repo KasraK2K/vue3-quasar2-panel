@@ -1,6 +1,23 @@
 <template>
   <q-card class="q-ma-lg">
-    <q-table title="Users" :rows="rows" :columns="columns" row-key="name" />
+    <q-table :rows="rows" :columns="columns" row-key="name">
+      <template v-slot:top>
+        <div
+          class="text-primary text-bold text-uppercase"
+          style="font-size: 1.5em"
+        >
+          users
+        </div>
+        <q-space />
+        <q-icon
+          name="add"
+          size="md"
+          color="primary"
+          class="pointer"
+          @click="$router.push({ name: 'CreateUser' })"
+        />
+      </template>
+    </q-table>
   </q-card>
 </template>
 

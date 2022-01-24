@@ -65,32 +65,6 @@ const linksList = [
         icon: "list",
         component: "UsersList",
       },
-      {
-        title: "operations",
-        caption: "Do something with user",
-        icon: "settings",
-        component: "",
-        submenu: [
-          {
-            title: "Create",
-            caption: "",
-            icon: "add",
-            component: "CreateUser",
-          },
-          {
-            title: "Edit",
-            caption: "",
-            icon: "edit",
-            component: "",
-          },
-          {
-            title: "Permissions",
-            caption: "",
-            icon: "lock",
-            component: "",
-          },
-        ],
-      },
     ],
   },
 ];
@@ -135,8 +109,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="sass" scoped>
-.pointer
-  cursor: pointer
-</style>

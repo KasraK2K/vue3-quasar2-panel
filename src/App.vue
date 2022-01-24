@@ -8,3 +8,8 @@ export default defineComponent({
   name: "App",
 });
 </script>
+
+<style lang="sass">
+.pointer
+  cursor: pointer
+</style>

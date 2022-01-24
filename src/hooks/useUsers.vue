@@ -1,9 +1,9 @@
 <script>
 import { ref, computed } from "vue";
-import { api } from "/src/boot/axios";
+import { service } from "/src/boot/service";
 
 export default async function useUsers() {
-  const response = await api.get("https://jsonplaceholder.typicode.com/users");
+  const response = await service.user.find();
   const users = ref(response.data);
 
   return { users };

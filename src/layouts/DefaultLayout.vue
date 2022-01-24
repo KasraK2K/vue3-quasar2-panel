@@ -13,6 +13,12 @@
 
         <q-toolbar-title>Embrago Panel</q-toolbar-title>
 
+        <q-toggle
+          v-model="isDark"
+          @click="toggleDarkMode"
+          class="q-mr-lg"
+          color="white"
+        />
         <q-icon
           name="logout"
           size="sm"
@@ -41,7 +47,7 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, reactive } from "vue";
 import SettingProvider from "components/SettingProvider.vue";
 import SidebarLinks from "src/components/SidebarLinks.vue";
 import { useQuasar } from "quasar";
@@ -80,6 +86,15 @@ export default defineComponent({
   setup() {
     const $q = useQuasar();
     const leftDrawerOpen = ref(false);
+    const toggleLeftDrawer = () => {
+      leftDrawerOpen.value = !leftDrawerOpen.value;
+      // TODO: Add settings.leftDrawer to Site Settings
+    };
+    const isDark = ref(false);
+    const toggleDarkMode = reactive(() => {
+      $q.dark.toggle();
+      // TODO: Add settings.dark to Site Settings
+    });
 
     const logOut = () => {
       $q.dialog({
@@ -96,14 +111,12 @@ export default defineComponent({
       });
     };
 
-    const toggleLeftDrawer = () => {
-      leftDrawerOpen.value = !leftDrawerOpen.value;
-    };
-
     return {
       sidebarLinks: linksList,
       leftDrawerOpen,
       toggleLeftDrawer,
+      isDark,
+      toggleDarkMode,
       logOut,
     };
   },

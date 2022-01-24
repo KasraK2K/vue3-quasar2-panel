@@ -1,5 +1,5 @@
 <script>
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import { service } from "/src/boot/service";
 
 export default async function useUsers() {

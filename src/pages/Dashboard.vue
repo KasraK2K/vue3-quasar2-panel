@@ -8,7 +8,7 @@
 import { defineComponent, inject, onMounted, computed } from "vue";
 import { useStore } from "vuex";
 import { USER, namespace } from "/src/store/constant";
-import useUsers from "/src/hooks/useUsers";
+// import useUsers from "/src/hooks/useUsers";
 
 export default defineComponent({
   name: "Dashboard",
@@ -16,25 +16,32 @@ export default defineComponent({
   setup() {
     const settings = inject("settings");
     const store = useStore();
-    const setUser = (payload) =>
-      store.dispatch(namespace(USER, USER.SET), payload);
-    const getUser = computed(() => store.getters[namespace(USER, USER.GET)]);
+
+    // const setUser = (payload) =>
+    //   store.dispatch(namespace(USER, USER.SET), payload);
+    // const getUser = computed(() => store.getters[namespace(USER, USER.GET)]);
+
+    const setUsersList = () => store.dispatch(namespace(USER, USER.SET_LIST));
+    const getUsersList = computed(
+      () => store.getters[namespace(USER, USER.GET_LIST)]
+    );
 
     onMounted(async () => {
-      setUser({
-        name: "John Doe",
-      });
-      const user = getUser.value;
-      console.log("vuex user", user);
+      // setUser({
+      //   name: "John Doe",
+      // });
+      setUsersList();
+      // const user = getUser.value;
+      // console.log("vuex user", user);
 
-      const { users } = await useUsers();
-      console.log("users", users.value);
+      // const { users } = await useUsers();
+      // console.log("users", users.value);
     });
 
     return {
       settings,
-      setUser,
-      getUser,
+      // getUser,
+      getUsersList,
     };
   },
 });

@@ -1,25 +1,25 @@
-import { api } from "../boot/axios";
+import { embargoClient } from "../boot/axios";
 
-const modulPath = "users";
+const modulPath = "mng-users";
 
 export const user = {
-  async find() {
-    return await api.get(modulPath);
+  async list() {
+    return await embargoClient.post(`${modulPath}/${list}`);
   },
 
   async findOne(id) {
-    return await api.get(`${modulPath}/${id}`);
+    return await embargoClient.get(`${modulPath}/${id}`);
   },
 
   async create(data) {
-    return await api.post(modulPath, data);
+    return await embargoClient.post(modulPath, data);
   },
 
   async update(id, data) {
-    return await api.patch(`${modulPath}/${id}`, data);
+    return await embargoClient.patch(`${modulPath}/${id}`, data);
   },
 
   async delete(id) {
-    return await api.delete(`${modulPath}/${id}`);
+    return await embargoClient.delete(`${modulPath}/${id}`);
   },
 };

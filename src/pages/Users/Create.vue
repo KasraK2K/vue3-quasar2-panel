@@ -1,4 +1,5 @@
 <template>
+  <bread-crumbs :data="breadcrumbs" />
   <div class="q-ma-lg">
     <q-card class="q-pa-lg">
       <q-form @submit="onSubmit" @reset="onReset">
@@ -79,20 +80,37 @@
 import { useQuasar } from "quasar";
 import { defineComponent, ref } from "vue";
 import { validation } from "boot/validation";
+import BreadCrumbs from "src/components/BreadCrumbs.vue";
 
 export default defineComponent({
   name: "CreateUser",
 
+  components: {
+    BreadCrumbs,
+  },
+
   setup() {
     const $q = useQuasar();
 
-    const user = ref({
-      firstName: "",
-      lastName: "",
-      phoneNumber: "",
-      age: null,
-    });
+    const breadcrumbs = [
+      {
+        label: "Dashboard",
+        icon: "dashboard",
+        component: "Dashboard",
+      },
+      {
+        label: "Users",
+        icon: "people",
+        component: "UsersList",
+      },
+      {
+        label: "Create User",
+        icon: "add",
+      },
+    ];
+    const user = ref({});
     const accept = ref(false);
+
     const onSubmit = () => {
       if (accept.value !== true) {
         $q.notify({
@@ -111,16 +129,12 @@ export default defineComponent({
       }
     };
     const onReset = () => {
-      user.value = {
-        firstName: "",
-        lastName: "",
-        phoneNumber: "",
-        age: null,
-      };
+      user.value = {};
       accept.value = false;
     };
 
     return {
+      breadcrumbs,
       user,
       accept,
       onSubmit,

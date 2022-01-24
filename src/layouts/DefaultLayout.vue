@@ -34,7 +34,7 @@
 
     <q-page-container>
       <setting-provider>
-        <router-view keep-alive />
+        <router-view />
       </setting-provider>
     </q-page-container>
   </q-layout>

@@ -55,7 +55,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row q-mb-md">
           <q-toggle v-model="accept" label="I accept the license and terms" />
         </div>
 
@@ -121,6 +121,7 @@ export default defineComponent({
         });
       } else {
         $q.notify({
+          progress: true,
           color: "green-4",
           textColor: "white",
           icon: "cloud_done",

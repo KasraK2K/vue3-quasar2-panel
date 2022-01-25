@@ -2,7 +2,6 @@
 import { reactive } from "vue";
 import { useStore } from "vuex";
 import { USER, namespace } from "/src/store/constant";
-// import { service } from "boot/service";
 
 export default async function useUser() {
   const store = useStore();

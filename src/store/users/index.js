@@ -1,5 +1,5 @@
 import { USER } from "../constant";
-import { embargoClient } from "boot/axios";
+import { service } from "boot/service";
 
 export default {
   namespaced: true,
@@ -22,15 +22,13 @@ export default {
     [USER.SET]: ({ commit }, payload) => {
       commit(USER.SET, payload);
     },
-    [USER.SET_LIST]: ({ commit }) => {
-      // TODO:  Use service.user.list instead of embargoClient.
-      embargoClient
-        .post("/mng-users/list")
-        .then((response) => {
-          // FIXME: Make Vuex Async
-          commit(USER.SET_LIST, response.data);
-        })
-        .catch((error) => console.log("USER.SET_LIST", error.message));
+    [USER.SET_LIST]: async ({ commit }) => {
+      try {
+        const { data } = await service.user.list();
+        commit(USER.SET_LIST, data);
+      } catch (error) {
+        console.log(error.message);
+      }
     },
   },
 

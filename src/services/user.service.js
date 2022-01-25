@@ -1,10 +1,10 @@
 import { embargoClient } from "../boot/axios";
 
-const modulPath = "mng-users";
+const modulPath = "/mng-users";
 
 export const user = {
   async list() {
-    return await embargoClient.post(`${modulPath}/${list}`);
+    return await embargoClient.post(`${modulPath}/list`);
   },
 
   async findOne(id) {

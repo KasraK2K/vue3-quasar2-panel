@@ -1,5 +1,5 @@
 import { boot } from "quasar/wrappers";
-import Services from "../services";
+import * as Services from "../services";
 
 const service = {
   user: Services.user,

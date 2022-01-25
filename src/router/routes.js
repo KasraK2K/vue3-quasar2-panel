@@ -18,12 +18,12 @@ const routes = [
       {
         path: "",
         name: "UsersList",
-        component: () => import("pages/Users/List.vue"),
+        component: () => import("pages/users/List.vue"),
       },
       {
         path: "create",
         name: "CreateUser",
-        component: () => import("pages/Users/Create.vue"),
+        component: () => import("pages/users/Create.vue"),
       },
     ],
   },
@@ -35,12 +35,12 @@ const routes = [
       {
         path: "login",
         name: "Login",
-        component: () => import("pages/Auth/Login.vue"),
+        component: () => import("pages/auth/Login.vue"),
       },
       {
         path: "register",
         name: "Register",
-        component: () => import("pages/Auth/Register.vue"),
+        component: () => import("pages/auth/Register.vue"),
       },
     ],
   },

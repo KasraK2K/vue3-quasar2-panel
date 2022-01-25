@@ -107,10 +107,11 @@
 
 <script>
 import { useQuasar } from "quasar";
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, reactive } from "vue";
 import { validation } from "boot/validation";
 import BreadCrumbs from "src/components/BreadCrumbs.vue";
 import { service } from "boot/service";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   name: "CreateUser",
@@ -121,6 +122,7 @@ export default defineComponent({
 
   setup() {
     const $q = useQuasar();
+    const router = useRouter();
 
     const breadcrumbs = [
       {
@@ -152,6 +154,7 @@ export default defineComponent({
             message: "Submitted",
           });
           user.value = {};
+          router.back();
         })
         .catch((error) => {
           $q.notify({
@@ -164,7 +167,7 @@ export default defineComponent({
         });
     };
     const onReset = () => {
-      this.user.value = {};
+      user.value = {};
     };
 
     return {

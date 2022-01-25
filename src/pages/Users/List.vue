@@ -23,9 +23,9 @@
 </template>
 
 <script>
-import { defineComponent, onMounted, reactive, ref } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
 import BreadCrumbs from "src/components/BreadCrumbs.vue";
-import userHook from "src/pages/users/UserHook";
+import userHook from "./UserHook";
 
 export default defineComponent({
   name: "UserList",

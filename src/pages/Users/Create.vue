@@ -145,7 +145,7 @@ export default defineComponent({
     const onSubmit = () => {
       service.user
         .create(user.value)
-        .then((response) => {
+        .then(() => {
           $q.notify({
             progress: true,
             color: "green-4",

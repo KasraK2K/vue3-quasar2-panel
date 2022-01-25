@@ -19,6 +19,13 @@ const isObject = (inputValue) =>
 
 const isAge = (inputValue) =>
   isNumber(inputValue) && inputValue > 0 && inputValue <= 120;
+
+const isEmail = (inputValue) => {
+  const regex = new RegExp(
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  );
+  return regex.test(inputValue);
+};
 /* -------------------------------------------------------------------------- */
 
 const validation = {
@@ -28,6 +35,7 @@ const validation = {
   isArray,
   isObject,
   isAge,
+  isEmail,
 };
 
 export default boot(({ app }) => {

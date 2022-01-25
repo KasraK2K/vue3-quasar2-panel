@@ -14,6 +14,7 @@ export default async function useValidation(value) {
   const isArray = () => validation.isArray(inputValue.value);
   const isObject = () => validation.isObject(inputValue.value);
   const isAge = () => validation.isAge(inputValue.value);
+  const isEmail = () => validation.isEmail(inputValue.value);
 
   /* -------------------------------------------------------------------------- */
   /*                             Exported Functions                             */
@@ -26,6 +27,7 @@ export default async function useValidation(value) {
     isObject,
     isAge,
     inputValue,
+    isEmail,
   };
 }
 </script>

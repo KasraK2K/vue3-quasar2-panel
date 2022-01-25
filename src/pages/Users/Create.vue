@@ -5,13 +5,14 @@
       <q-form @submit="onSubmit" @reset="onReset">
         <div class="q-col-gutter-x-md row items-star">
           <div class="col-12 col-md-6">
-            <q-input
+            <q-select
               outlined
-              v-model.trim="user.firstName"
-              label="First Name *"
+              v-model.trim="user.source"
+              :options="['mnt']"
+              label="Source"
               lazy-rules
               :rules="[
-                (val) => validation.isString(val) || 'Please type something',
+                (val) => validation.isString(val) || 'Please select something',
               ]"
             />
           </div>
@@ -19,11 +20,21 @@
           <div class="col-12 col-md-6">
             <q-input
               outlined
-              v-model.trim="user.lastName"
-              label="Last Name *"
+              v-model.trim="user.name"
+              label="Name *"
+              lazy-rules
+              :rules="[(val) => validation.isString(val) || 'Please type name']"
+            />
+          </div>
+
+          <div class="col-12 col-md-6">
+            <q-input
+              outlined
+              v-model.trim="user.email"
+              label="Email *"
               lazy-rules
               :rules="[
-                (val) => validation.isString(val) || 'Please type something',
+                (val) => validation.isEmail(val) || 'Please type valid email',
               ]"
             />
           </div>
@@ -31,11 +42,11 @@
           <div class="col-12 col-md-6">
             <q-input
               outlined
-              v-model.trim="user.phoneNumber"
-              label="Phone *"
+              v-model.trim="user.password"
+              label="Password *"
               lazy-rules
               :rules="[
-                (val) => validation.isString(val) || 'Please type something',
+                (val) => validation.isString(val) || 'Please type password',
               ]"
             />
           </div>
@@ -43,20 +54,38 @@
           <div class="col-12 col-md-6">
             <q-input
               outlined
-              type="number"
-              v-model.number="user.age"
-              label="Your age *"
+              v-model.trim="user.access"
+              label="Access *"
               lazy-rules
               :rules="[
-                (val) => validation.isNumber(val) || 'Please type your age',
-                (val) => validation.isAge(val) || 'Please type a real age',
+                (val) => validation.isString(val) || 'Please type access',
               ]"
             />
           </div>
-        </div>
 
-        <div class="row q-mb-md">
-          <q-toggle v-model="accept" label="I accept the license and terms" />
+          <div class="col-12 col-md-6">
+            <q-input
+              outlined
+              v-model.trim="user._user_id"
+              label="User ID *"
+              lazy-rules
+              :rules="[
+                (val) => validation.isString(val) || 'Please type user_id',
+              ]"
+            />
+          </div>
+
+          <div class="col-12">
+            <q-input
+              outlined
+              v-model.trim="user.api_key"
+              label="API Key *"
+              lazy-rules
+              :rules="[
+                (val) => validation.isString(val) || 'Please type api_key',
+              ]"
+            />
+          </div>
         </div>
 
         <div class="row">
@@ -81,6 +110,7 @@ import { useQuasar } from "quasar";
 import { defineComponent, ref } from "vue";
 import { validation } from "boot/validation";
 import BreadCrumbs from "src/components/BreadCrumbs.vue";
+import { service } from "boot/service";
 
 export default defineComponent({
   name: "CreateUser",
@@ -109,35 +139,37 @@ export default defineComponent({
       },
     ];
     const user = ref({});
-    const accept = ref(false);
 
     const onSubmit = () => {
-      if (accept.value !== true) {
-        $q.notify({
-          color: "red-5",
-          textColor: "white",
-          icon: "warning",
-          message: "You need to accept the license and terms first",
+      service.user
+        .create(user.value)
+        .then((response) => {
+          $q.notify({
+            progress: true,
+            color: "green-4",
+            textColor: "white",
+            icon: "cloud_done",
+            message: "Submitted",
+          });
+          user.value = {};
+        })
+        .catch((error) => {
+          $q.notify({
+            progress: true,
+            color: "red-4",
+            textColor: "white",
+            icon: "cloud_off",
+            message: "Error",
+          });
         });
-      } else {
-        $q.notify({
-          progress: true,
-          color: "green-4",
-          textColor: "white",
-          icon: "cloud_done",
-          message: "Submitted",
-        });
-      }
     };
     const onReset = () => {
-      user.value = {};
-      accept.value = false;
+      this.user.value = {};
     };
 
     return {
       breadcrumbs,
       user,
-      accept,
       onSubmit,
       onReset,
       validation,

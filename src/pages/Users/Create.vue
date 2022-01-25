@@ -4,7 +4,7 @@
     <q-card class="q-pa-lg">
       <q-form @submit="onSubmit" @reset="onReset">
         <div class="q-col-gutter-x-md row items-star">
-          <div class="col col-md-6">
+          <div class="col-12 col-md-6">
             <q-input
               outlined
               v-model.trim="user.firstName"
@@ -16,7 +16,7 @@
             />
           </div>
 
-          <div class="col col-md-6">
+          <div class="col-12 col-md-6">
             <q-input
               outlined
               v-model.trim="user.lastName"
@@ -28,7 +28,7 @@
             />
           </div>
 
-          <div class="col col-md-6">
+          <div class="col-12 col-md-6">
             <q-input
               outlined
               v-model.trim="user.phoneNumber"
@@ -40,7 +40,7 @@
             />
           </div>
 
-          <div class="col col-md-6">
+          <div class="col-12 col-md-6">
             <q-input
               outlined
               type="number"

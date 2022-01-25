@@ -46,6 +46,8 @@ module.exports = configure(function (ctx) {
 
       devtool: "source-map",
 
+      env: require("dotenv").config().parsed,
+
       // transpile: false,
       // publicPath: '/',
 

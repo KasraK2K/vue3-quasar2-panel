@@ -5,7 +5,9 @@ import { AUTH, namespace } from "/src/store/constant";
 
 /* ------------------------------- Server One ------------------------------- */
 const embargoClient = axios.create({
-  baseURL: "https://api-dev.embargoapp.com/v2/",
+  baseURL: JSON.parse(process.env.IS_DEVELOPMENT)
+    ? "https://api-dev.embargoapp.com/v2/"
+    : "https://api.embargoapp.com/v2/",
   withCredentials: false,
   headers: {
     "Content-Type": "application/json",

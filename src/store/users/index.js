@@ -27,6 +27,7 @@ export default {
         const { data } = await service.user.list();
         commit(USER.SET_LIST, data);
       } catch (error) {
+        // FIXME: Find Why commit has error
         console.log(error.message);
       }
     },

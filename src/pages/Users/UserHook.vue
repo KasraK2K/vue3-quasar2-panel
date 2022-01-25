@@ -1,5 +1,5 @@
 <script>
-import { ref } from "vue";
+import { reactive } from "vue";
 import { useStore } from "vuex";
 import { USER, namespace } from "/src/store/constant";
 // import { service } from "boot/service";
@@ -9,7 +9,7 @@ export default async function useUser() {
 
   await store.dispatch(namespace(USER, USER.SET_LIST));
   const usersList = store.getters[namespace(USER, USER.GET_LIST)];
-  const users = ref(usersList);
+  const users = reactive(usersList);
 
   return { users };
 }

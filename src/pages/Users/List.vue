@@ -85,7 +85,7 @@ export default defineComponent({
 
     onMounted(async () => {
       const { users } = await useUser();
-      rows.value = users.value.data;
+      rows.value = users.data;
     });
 
     return {

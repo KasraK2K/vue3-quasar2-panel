@@ -25,7 +25,7 @@
 <script>
 import { defineComponent, onMounted, ref } from "vue";
 import BreadCrumbs from "src/components/BreadCrumbs.vue";
-import userHook from "./UserHook";
+import useUser from "./UserHook";
 
 export default defineComponent({
   name: "UserList",
@@ -84,7 +84,7 @@ export default defineComponent({
     const rows = ref([]);
 
     onMounted(async () => {
-      const { users } = await userHook();
+      const { users } = await useUser();
       rows.value = users.value.data;
     });
 

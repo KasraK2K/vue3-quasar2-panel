@@ -21,6 +21,5 @@ export default {
 
   state: {
     // token: "this token should be deleted and get from api",
-    token: "",
   },
 };

@@ -51,6 +51,7 @@ import { defineComponent, ref, reactive } from "vue";
 import SettingProvider from "components/SettingProvider.vue";
 import SidebarLinks from "src/components/SidebarLinks.vue";
 import { useQuasar } from "quasar";
+import useAuth from "/src/hooks/useAuth";
 
 const linksList = [
   {
@@ -85,6 +86,9 @@ export default defineComponent({
 
   setup() {
     const $q = useQuasar();
+    const { checkToken } = useAuth();
+    checkToken();
+
     const leftDrawerOpen = ref(false);
     const toggleLeftDrawer = () => {
       leftDrawerOpen.value = !leftDrawerOpen.value;

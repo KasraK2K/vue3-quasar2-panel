@@ -4,22 +4,23 @@ export default {
   namespaced: true,
 
   getters: {
-    [AUTH.GET]: (state) => state.token,
+    [AUTH.GET_TOKEN]: (state) => state.token,
   },
 
   mutations: {
-    [AUTH.SET]: (state, token) => {
+    [AUTH.SET_TOKEN]: (state, token) => {
       state.token = token;
     },
   },
 
   actions: {
-    [AUTH.SET]: ({ commit }, token) => {
-      commit(AUTH.SET, token);
+    [AUTH.SET_TOKEN]: ({ commit }, token) => {
+      commit(AUTH.SET_TOKEN, token);
     },
   },
 
   state: {
+    // token: "this token should be deleted and get from api",
     token: "",
   },
 };

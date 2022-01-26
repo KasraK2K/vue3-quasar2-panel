@@ -8,8 +8,8 @@ export const USER = {
 
 export const AUTH = {
   NAMESPACE: "auth",
-  SET: "set_token",
-  GET: "get_token",
+  SET_TOKEN: "set_token",
+  GET_TOKEN: "get_token",
 };
 
 export const namespace = (module, name) => `${module.NAMESPACE}/${name}`;

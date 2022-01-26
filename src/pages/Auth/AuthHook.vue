@@ -25,6 +25,6 @@ export default async function useAuth() {
     }
   }
 
-  return { login };
+  return { login, logout };
 }
 </script>

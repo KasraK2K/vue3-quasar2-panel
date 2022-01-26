@@ -1,7 +1,12 @@
 <template>
   <bread-crumbs :data="breadcrumbs" />
   <q-card class="q-ma-lg">
-    <q-table :rows="rows" :columns="columns" row-key="name">
+    <q-table
+      :rows="rows"
+      :columns="columns"
+      row-key="name"
+      :rows-per-page-options="[10, 20, 50, 100]"
+    >
       <template v-slot:top>
         <div
           class="text-primary text-bold text-uppercase"
@@ -84,7 +89,8 @@ export default defineComponent({
     const rows = ref([]);
 
     onMounted(async () => {
-      const { users } = await useUser();
+      const { getUsers } = await useUser();
+      const { users } = await getUsers();
       rows.value = users.data;
     });
 

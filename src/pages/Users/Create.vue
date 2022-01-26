@@ -112,6 +112,7 @@ import { validation } from "boot/validation";
 import BreadCrumbs from "src/components/BreadCrumbs.vue";
 import { service } from "boot/service";
 import { useRouter } from "vue-router";
+import useUser from "./UserHook";
 
 export default defineComponent({
   name: "CreateUser",
@@ -142,29 +143,29 @@ export default defineComponent({
     ];
     const user = ref({});
 
-    const onSubmit = () => {
-      service.user
-        .create(user.value)
-        .then(() => {
-          $q.notify({
-            progress: true,
-            color: "green-4",
-            textColor: "white",
-            icon: "cloud_done",
-            message: "Submitted",
-          });
-          user.value = {};
-          router.back();
-        })
-        .catch((error) => {
-          $q.notify({
-            progress: true,
-            color: "red-4",
-            textColor: "white",
-            icon: "cloud_off",
-            message: "Error",
-          });
+    const onSubmit = async () => {
+      const { createUser } = await useUser();
+      const { error } = await createUser(user.value);
+
+      if (error) {
+        $q.notify({
+          progress: true,
+          color: "red-4",
+          textColor: "white",
+          icon: "cloud_off",
+          message: error.message,
         });
+      } else {
+        $q.notify({
+          progress: true,
+          color: "green-4",
+          textColor: "white",
+          icon: "cloud_done",
+          message: "Submitted",
+        });
+        user.value = {};
+        router.back();
+      }
     };
     const onReset = () => {
       user.value = {};

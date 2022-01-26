@@ -48,10 +48,10 @@
 
 <script>
 import { defineComponent, ref, reactive } from "vue";
-import SettingProvider from "components/SettingProvider.vue";
-import SidebarLinks from "src/components/SidebarLinks.vue";
+import SettingProvider from "src/components/setting-provider.vue";
+import SidebarLinks from "src/components/sidebar-links.vue";
 import { useQuasar } from "quasar";
-import useAuthorization from "/src/hooks/useAuthorization";
+import useAuthorization from "/src/hooks/use-authorization";
 
 const linksList = [
   {

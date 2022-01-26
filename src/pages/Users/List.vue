@@ -29,7 +29,7 @@
 
 <script>
 import { defineComponent, reactive } from "vue";
-import BreadCrumbs from "src/components/BreadCrumbs.vue";
+import BreadCrumbs from "src/components/bread-crumbs.vue";
 import useUserListHook from "./list-hook";
 
 export default defineComponent({

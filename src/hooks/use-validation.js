@@ -1,4 +1,3 @@
-<script>
 import { ref } from "vue";
 import { validation } from "boot/validation";
 
@@ -30,4 +29,3 @@ export default async function useValidation(value) {
     isEmail,
   };
 }
-</script>

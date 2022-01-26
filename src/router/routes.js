@@ -1,19 +1,19 @@
 const routes = [
   {
     path: "/",
-    component: () => import("layouts/DefaultLayout.vue"),
+    component: () => import("src/layouts/default-layout.vue"),
     children: [
       {
         path: "",
         name: "Dashboard",
-        component: () => import("pages/Dashboard.vue"),
+        component: () => import("src/pages/dashboard.vue"),
       },
     ],
   },
 
   {
     path: "/users",
-    component: () => import("layouts/DefaultLayout.vue"),
+    component: () => import("src/layouts/default-layout.vue"),
     children: [
       {
         path: "",
@@ -30,7 +30,7 @@ const routes = [
 
   {
     path: "/auth",
-    component: () => import("layouts/CleanLayout.vue"),
+    component: () => import("src/layouts/clean-layout.vue"),
     children: [
       {
         path: "login",
@@ -42,7 +42,7 @@ const routes = [
 
   {
     path: "/:catchAll(.*)*",
-    component: () => import("pages/Error404.vue"),
+    component: () => import("src/pages/error-404.vue"),
   },
 ];
 

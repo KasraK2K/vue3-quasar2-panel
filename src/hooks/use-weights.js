@@ -1,4 +1,3 @@
-<script>
 import { ref, computed } from "vue";
 
 export default function useWeights(
@@ -26,4 +25,3 @@ export default function useWeights(
     kg,
   };
 }
-</script>

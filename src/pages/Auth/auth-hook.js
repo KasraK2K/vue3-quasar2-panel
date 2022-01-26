@@ -1,5 +1,5 @@
 import { service } from "boot/service";
-import useAuthorization from "/src/hooks/useAuthorization";
+import useAuthorization from "/src/hooks/use-authorization";
 
 export default async function useAuth() {
   const { getToken, setToken, clearToken } = useAuthorization();

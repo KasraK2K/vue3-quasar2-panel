@@ -10,8 +10,8 @@
 
 <script>
 import { defineComponent } from "vue";
-import SettingProvider from "components/SettingProvider.vue";
-import useAuthorization from "/src/hooks/useAuthorization";
+import SettingProvider from "src/components/setting-provider.vue";
+import useAuthorization from "/src/hooks/use-authorization";
 
 export default defineComponent({
   name: "CleanLayout",

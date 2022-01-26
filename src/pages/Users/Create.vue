@@ -60,7 +60,7 @@
 
 <script>
 import { defineComponent, reactive } from "vue";
-import BreadCrumbs from "src/components/BreadCrumbs.vue";
+import BreadCrumbs from "src/components/bread-crumbs.vue";
 import userUserCreateHook from "./create-hook";
 
 export default defineComponent({

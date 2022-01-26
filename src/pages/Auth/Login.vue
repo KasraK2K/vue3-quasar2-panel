@@ -14,29 +14,57 @@
         <q-form @submit="onSubmit" @reset="onReset">
           <div class="q-col-gutter-x-md items-star">
             <q-input
+              v-model.trim="user.email"
               outlined
               label="Username or Email *"
               lazy-rules
               class="q-mb-md"
             />
-            <q-input outlined type="password" label="Password *" lazy-rules />
+            <q-input
+              v-model.trim="user.password"
+              outlined
+              type="password"
+              label="Password *"
+              lazy-rules
+            />
           </div>
-        </q-form>
-        <div
-          class="q-mt-md pointer text-primary"
-          @click="$router.push({ name: 'Register' })"
-        >
-          Register a new account
-        </div>
-      </q-card-section>
-      <!-- END: Form -->
 
-      <q-card-section>
-        <q-card-actions align="center">
-          <q-btn color="primary">Submit</q-btn>
-          <q-btn flat>Reset</q-btn>
-        </q-card-actions>
+          <div
+            class="q-my-md pointer text-primary"
+            @click="$router.push({ name: 'Register' })"
+          >
+            Register a new account
+          </div>
+
+          <q-card-actions align="center">
+            <q-btn color="primary" type="submit" label="Login" />
+            <q-btn flat label="Reset" type="reset" />
+          </q-card-actions>
+        </q-form>
       </q-card-section>
     </q-card>
   </div>
 </template>
+
+<script>
+import { defineComponent, ref } from "vue";
+import useAuth from "./AuthHook.vue";
+
+export default defineComponent({
+  name: "Login",
+
+  setup() {
+    const user = ref({});
+
+    const onSubmit = async () => {
+      const { login } = await useAuth();
+      await login(user.value);
+    };
+    const onReset = () => {
+      user.value = {};
+    };
+
+    return { user, onSubmit, onReset };
+  },
+});
+</script>

@@ -141,11 +141,9 @@ export default defineComponent({
       },
     ];
     const user = ref({});
-
     const onSubmit = async () => {
       const { createUser } = await useUser();
       const { error } = await createUser(user.value);
-
       if (error) {
         $q.notify({
           progress: true,

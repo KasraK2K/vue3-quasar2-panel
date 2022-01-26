@@ -11,11 +11,19 @@ export default {
     [AUTH.SET_TOKEN]: (state, token) => {
       state.token = token;
     },
+
+    [AUTH.CLEAR_TOKEN]: (state) => {
+      state.token = null;
+    },
   },
 
   actions: {
     [AUTH.SET_TOKEN]: ({ commit }, token) => {
       commit(AUTH.SET_TOKEN, token);
+    },
+
+    [AUTH.CLEAR_TOKEN]: ({ commit }) => {
+      commit(AUTH.CLEAR_TOKEN);
     },
   },
 

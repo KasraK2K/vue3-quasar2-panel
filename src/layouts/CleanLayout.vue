@@ -11,7 +11,7 @@
 <script>
 import { defineComponent } from "vue";
 import SettingProvider from "components/SettingProvider.vue";
-import useAuth from "/src/hooks/useAuth";
+import useAuthorization from "/src/hooks/useAuthorization";
 
 export default defineComponent({
   name: "CleanLayout",
@@ -21,7 +21,7 @@ export default defineComponent({
   },
 
   setup() {
-    const { checkToken } = useAuth();
+    const { checkToken } = useAuthorization();
     checkToken();
   },
 });

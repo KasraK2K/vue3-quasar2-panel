@@ -33,22 +33,30 @@
               lazy-rules
             />
           </div>
-        </q-form>
-        <div
-          class="q-mt-md pointer text-primary"
-          @click="$router.push({ name: 'Login' })"
-        >
-          Already have account ?
-        </div>
-      </q-card-section>
-      <!-- END: Form -->
 
-      <q-card-section>
-        <q-card-actions align="center">
-          <q-btn color="primary">Submit</q-btn>
-          <q-btn flat>Reset</q-btn>
-        </q-card-actions>
+          <div
+            class="q-my-md pointer text-primary"
+            @click="$router.push({ name: 'Login' })"
+          >
+            Already have account ?
+          </div>
+
+          <q-card-actions align="center">
+            <q-btn color="primary">Submit</q-btn>
+            <q-btn flat>Reset</q-btn>
+          </q-card-actions>
+        </q-form>
       </q-card-section>
     </q-card>
   </div>
 </template>
+
+<script>
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  name: "Register",
+
+  setup() {},
+});
+</script>

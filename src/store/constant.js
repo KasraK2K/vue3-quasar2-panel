@@ -10,6 +10,7 @@ export const AUTH = {
   NAMESPACE: "auth",
   SET_TOKEN: "set_token",
   GET_TOKEN: "get_token",
+  CLEAR_TOKEN: "clear_token",
 };
 
 export const namespace = (module, name) => `${module.NAMESPACE}/${name}`;

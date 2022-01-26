@@ -3,7 +3,7 @@ import { useStore } from "vuex";
 import { AUTH, namespace } from "/src/store/constant";
 import { useRouter } from "vue-router";
 
-export default function useAuth() {
+export default function useAuthorization() {
   const store = useStore();
   const router = useRouter();
 
@@ -33,6 +33,10 @@ export default function useAuth() {
     if (token && isInAuthPages) router.push({ name: "Dashboard" });
   }
 
-  return { getToken, setToken, checkToken, setToken };
+  function clearToken() {
+    store.dispatch(namespace(AUTH, AUTH.CLEAR_TOKEN));
+  }
+
+  return { getToken, setToken, checkToken, clearToken };
 }
 </script>

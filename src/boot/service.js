@@ -3,6 +3,7 @@ import * as Services from "../services";
 
 const service = {
   user: Services.user,
+  auth: Services.auth,
 };
 
 export default boot(({ app }) => {

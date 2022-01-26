@@ -1,9 +1,9 @@
 <template>
-  <bread-crumbs :data="breadcrumbs" />
+  <bread-crumbs :data="state.breadcrumbs" />
   <q-card class="q-ma-lg">
     <q-table
-      :rows="rows"
-      :columns="columns"
+      :rows="state.rows"
+      :columns="state.columns"
       row-key="name"
       :rows-per-page-options="[10, 20, 50, 100]"
     >
@@ -28,9 +28,9 @@
 </template>
 
 <script>
-import { defineComponent, onMounted, ref } from "vue";
+import { defineComponent, reactive } from "vue";
 import BreadCrumbs from "src/components/BreadCrumbs.vue";
-import useUser from "./UserHook";
+import useUserListHook from "./list-hook";
 
 export default defineComponent({
   name: "UserList",
@@ -40,65 +40,9 @@ export default defineComponent({
   },
 
   setup() {
-    const breadcrumbs = [
-      {
-        label: "Dashboard",
-        icon: "dashboard",
-        component: "Dashboard",
-      },
-      {
-        label: "Users",
-        icon: "people",
-        component: "",
-      },
-    ];
-    const columns = [
-      {
-        name: "id",
-        required: true,
-        label: "ID",
-        align: "left",
-        field: "id",
-        sortable: false,
-      },
-      {
-        name: "name",
-        required: true,
-        label: "Name",
-        align: "left",
-        field: "name",
-        sortable: true,
-      },
-      {
-        name: "access",
-        required: true,
-        label: "Access",
-        align: "left",
-        field: "access",
-        sortable: true,
-      },
-      {
-        name: "password",
-        required: true,
-        label: "Password",
-        align: "left",
-        field: "password",
-        sortable: true,
-      },
-    ];
-    const rows = ref([]);
-
-    onMounted(async () => {
-      const { getUsers } = await useUser();
-      const { users } = await getUsers();
-      rows.value = users.data;
-    });
-
-    return {
-      breadcrumbs,
-      columns,
-      rows,
-    };
+    const state = reactive({});
+    const hookReturn = useUserListHook(state);
+    return { state, ...hookReturn };
   },
 });
 </script>

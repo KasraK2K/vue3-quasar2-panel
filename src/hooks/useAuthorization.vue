@@ -28,7 +28,7 @@ export default function useAuthorization() {
   function checkToken() {
     const token = getToken();
     const component = router.currentRoute.value.name;
-    const isInAuthPages = component === "Login" || component === "Register";
+    const isInAuthPages = component === "Login";
     if (!token && !isInAuthPages) router.push({ name: "Login" });
     if (token && isInAuthPages) router.push({ name: "Dashboard" });
   }

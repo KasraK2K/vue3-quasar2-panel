@@ -1,11 +1,10 @@
-<script>
 import { service } from "boot/service";
 import useAuthorization from "/src/hooks/useAuthorization";
 
 export default async function useAuth() {
   const { getToken, setToken, clearToken } = useAuthorization();
 
-  async function login(data) {
+  const login = async (data) => {
     try {
       const response = await service.auth.login(data);
       const token = response.data.token;
@@ -14,17 +13,16 @@ export default async function useAuth() {
     } catch (error) {
       return { error };
     }
-  }
+  };
 
-  async function logout(token) {
+  const logout = async (token) => {
     try {
       await service.auth.logout(token);
       clearToken();
     } catch (error) {
       return { error };
     }
-  }
+  };
 
   return { login, logout };
 }
-</script>

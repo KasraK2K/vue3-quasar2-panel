@@ -31,7 +31,11 @@ const api = axios.create({ baseURL: "https://jsonplaceholder.typicode.com/" });
 /* ---------------------------- Add Bearer Token ---------------------------- */
 [embargoClient, api, api2].forEach((apiClient) => {
   apiClient.interceptors.request.use((config) => {
-    const token = Store().getters[namespace(AUTH, AUTH.GET)];
+    config.data = {
+      api_key: process.env.API_KEY,
+      source: process.env.SOURCE,
+    };
+    const token = Store().getters[namespace(AUTH, AUTH.GET_TOKEN)];
     if (token) {
       config.headers.common.Authorization = `Bearer ${token}`;
       config.data.token = token;

@@ -14,14 +14,14 @@
         <q-form @submit="onSubmit" @reset="onReset">
           <div class="q-col-gutter-x-md items-star">
             <q-input
-              v-model.trim="user.email"
+              v-model.trim="state.userName"
               outlined
               label="Username or Email *"
               lazy-rules
               class="q-mb-md"
             />
             <q-input
-              v-model.trim="user.password"
+              v-model.trim="state.password"
               outlined
               type="password"
               label="Password *"
@@ -29,14 +29,7 @@
             />
           </div>
 
-          <div
-            class="q-my-md pointer text-primary"
-            @click="$router.push({ name: 'Register' })"
-          >
-            Register a new account
-          </div>
-
-          <q-card-actions align="center">
+          <q-card-actions align="center" class="q-mt-md">
             <q-btn color="primary" type="submit" label="Login" />
             <q-btn flat label="Reset" type="reset" />
           </q-card-actions>
@@ -47,24 +40,15 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
-import useAuth from "./AuthHook.vue";
+import { defineComponent, reactive } from "vue";
+import useLoginHook from "./login-hook";
 
 export default defineComponent({
   name: "Login",
-
   setup() {
-    const user = ref({});
-
-    const onSubmit = async () => {
-      const { login } = await useAuth();
-      await login(user.value);
-    };
-    const onReset = () => {
-      user.value = {};
-    };
-
-    return { user, onSubmit, onReset };
+    const state = reactive({});
+    const hookReturn = useLoginHook(state);
+    return { state, ...hookReturn };
   },
 });
 </script>

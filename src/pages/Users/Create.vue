@@ -110,7 +110,6 @@ import { useQuasar } from "quasar";
 import { defineComponent, ref, reactive, onMounted } from "vue";
 import { validation } from "boot/validation";
 import BreadCrumbs from "src/components/BreadCrumbs.vue";
-import { service } from "boot/service";
 import { useRouter } from "vue-router";
 import useUser from "./UserHook";
 

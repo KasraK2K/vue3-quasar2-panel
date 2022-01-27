@@ -46,7 +46,9 @@ module.exports = configure(function (ctx) {
 
       devtool: "source-map",
 
-      env: require("dotenv").config().parsed,
+      env: require("dotenv").config({
+        path: ctx.prod ? ".env.production" : ".env.development",
+      }).parsed,
 
       // transpile: false,
       // publicPath: '/',

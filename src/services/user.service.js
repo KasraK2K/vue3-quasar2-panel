@@ -7,9 +7,9 @@ export const user = {
     return await embargoClient.post(`${modulPath}/list`);
   },
 
-  // async findOne(id) {
-  //   return await embargoClient.get(`${modulPath}/${id}`);
-  // },
+  async findOne(id) {
+    return await embargoClient.get(`${modulPath}/${id}`);
+  },
 
   async create(data) {
     return await embargoClient.post(`${modulPath}/add-user`, data);

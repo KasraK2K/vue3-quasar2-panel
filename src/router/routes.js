@@ -25,6 +25,12 @@ const routes = [
         name: "CreateUser",
         component: () => import("src/pages/users/create.vue"),
       },
+      {
+        path: "edit/:id",
+        name: "EditUser",
+        component: () => import("src/pages/users/edit.vue"),
+        props: true,
+      },
     ],
   },
 

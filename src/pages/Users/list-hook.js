@@ -48,11 +48,18 @@ export default function useUserListHook(state) {
       field: "password",
       sortable: true,
     },
+    {
+      name: "options",
+      required: true,
+      label: "Options",
+      align: "center",
+      field: "options",
+      sortable: false,
+    },
   ];
 
   const store = useStore();
 
-  // REVIEW: We don't need getUsersList function outside of hook
   const getUsersList = async () => {
     await store.dispatch(namespace(USER, USER.SET_LIST));
     state.users = store.getters[namespace(USER, USER.GET_LIST)];

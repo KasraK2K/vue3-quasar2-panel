@@ -7,7 +7,7 @@
           class="text-primary text-bold text-capitalize q-mb-md"
           style="font-size: 1.5em"
         >
-          Create User
+          Edit User
         </div>
 
         <div class="q-col-gutter-x-md row items-star">
@@ -97,18 +97,25 @@
 <script>
 import { defineComponent, reactive } from "vue";
 import BreadCrumbs from "src/components/bread-crumbs.vue";
-import userUserCreateHook from "./create-hook";
+import userUserEditHook from "./edit-hook";
 
 export default defineComponent({
-  name: "CreateUser",
+  name: "EditUser",
+
+  props: {
+    id: {
+      type: String,
+      required: true,
+    },
+  },
 
   components: {
     BreadCrumbs,
   },
 
-  setup() {
-    const state = reactive({});
-    const hookReturn = userUserCreateHook(state);
+  setup(props) {
+    const state = reactive({ id: props.id });
+    const hookReturn = userUserEditHook(state);
     return {
       state,
       ...hookReturn,

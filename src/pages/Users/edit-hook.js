@@ -3,7 +3,7 @@ import { useRouter } from "vue-router";
 import { service } from "boot/service";
 import { validation } from "boot/validation";
 
-export default function userUserCreateHook(state) {
+export default function userUserEditHook(state) {
   state.name = "";
   state.email = "";
   state.password = "";
@@ -21,10 +21,19 @@ export default function userUserCreateHook(state) {
       component: "UsersList",
     },
     {
-      label: "Create User",
-      icon: "add",
+      label: "Edit User",
+      icon: "edit",
     },
   ];
+
+  const findUser = async () => {
+    const user = await service.user.list(state.id);
+    state.name = user.name;
+    state.email = user.email;
+    state.password = user.password;
+    state.access = user.access;
+    accessToSelection();
+  };
 
   const $q = useQuasar();
   const router = useRouter();
@@ -40,10 +49,20 @@ export default function userUserCreateHook(state) {
     state.access += String(selectionSum);
   };
 
+  const accessToSelection = () => {
+    const calcutaleArray = state.access.split("");
+    let zeroString = "0000";
+    state.selection = calcutaleArray.map((item) => {
+      zeroString = zeroString.slice(1);
+      return zeroString ? Number(item + zeroString) : Number(item);
+    });
+  };
+
   const onSubmit = async () => {
     try {
       selectionToAccess();
       const data = {
+        _user_id: state.id,
         name: state.name,
         email: state.email,
         password: state.password,
@@ -57,7 +76,7 @@ export default function userUserCreateHook(state) {
         icon: "cloud_done",
         message: "Submitted",
       });
-      router.push({ name: "UsersList" });
+      // router.push({ name: "UsersList" });
     } catch (error) {
       $q.notify({
         progress: true,

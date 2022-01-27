@@ -9,10 +9,10 @@
     >
       <template v-slot:top>
         <div
-          class="text-primary text-bold text-uppercase"
+          class="text-primary text-bold text-capitalize"
           style="font-size: 1.5em"
         >
-          users
+          Users List
         </div>
         <q-space />
         <q-icon
@@ -22,6 +22,37 @@
           class="pointer"
           @click="$router.push({ name: 'CreateUser' })"
         />
+      </template>
+
+      <template v-slot:body="props">
+        <q-tr :props="props">
+          <q-td key="id" :props="props">
+            {{ props.row.id }}
+          </q-td>
+
+          <q-td key="name" :props="props">
+            {{ props.row.name }}
+          </q-td>
+
+          <q-td key="access" :props="props">
+            {{ props.row.access }}
+          </q-td>
+
+          <q-td key="password" :props="props">
+            {{ props.row.password }}
+          </q-td>
+
+          <q-td key="options" :props="props">
+            <q-btn
+              flat
+              icon="edit"
+              color="secondary"
+              class="q-px-sm"
+              :to="{ name: 'EditUser', params: { id: props.row.id } }"
+            />
+            <q-btn flat icon="delete" color="negative" class="q-px-sm" />
+          </q-td>
+        </q-tr>
       </template>
     </q-table>
   </q-card>

@@ -42,6 +42,7 @@ export default function userUserCreateHook(state) {
 
   const onSubmit = async () => {
     try {
+      accessGenerator();
       await service.user.create({
         name: state.name,
         email: state.email,

@@ -45,28 +45,24 @@
           <div class="q-gutter-sm q-pb-md">
             <q-checkbox
               v-model="state.selection"
-              @click="accessGenerator"
               :val="1"
               label="Read"
               color="primary"
             />
             <q-checkbox
               v-model="state.selection"
-              @click="accessGenerator"
               :val="10"
               label="Write"
               color="primary"
             />
             <q-checkbox
               v-model="state.selection"
-              @click="accessGenerator"
               :val="100"
               label="Update"
               color="primary"
             />
             <q-checkbox
               v-model="state.selection"
-              @click="accessGenerator"
               :val="1000"
               label="Delete"
               color="primary"

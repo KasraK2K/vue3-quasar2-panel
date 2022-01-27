@@ -4,6 +4,7 @@
     <q-card class="q-pa-lg">
       <q-form @submit="onSubmit" @reset="onReset">
         <div class="q-col-gutter-x-md row items-star">
+          <!-- Name -->
           <div class="col-12 col-md-6">
             <q-input
               outlined
@@ -14,6 +15,7 @@
             />
           </div>
 
+          <!-- Email -->
           <div class="col-12 col-md-6">
             <q-input
               outlined
@@ -26,6 +28,7 @@
             />
           </div>
 
+          <!-- Password -->
           <div class="col-12 col-md-6">
             <q-input
               outlined
@@ -38,7 +41,37 @@
             />
           </div>
 
-          <!-- FIXME: add some checkbox as access CRUD permision -->
+          <!-- Access -->
+          <div class="q-gutter-sm q-pb-md">
+            <q-checkbox
+              v-model="state.selection"
+              @click="accessGenerator"
+              :val="1"
+              label="Read"
+              color="primary"
+            />
+            <q-checkbox
+              v-model="state.selection"
+              @click="accessGenerator"
+              :val="10"
+              label="Write"
+              color="primary"
+            />
+            <q-checkbox
+              v-model="state.selection"
+              @click="accessGenerator"
+              :val="100"
+              label="Update"
+              color="primary"
+            />
+            <q-checkbox
+              v-model="state.selection"
+              @click="accessGenerator"
+              :val="1000"
+              label="Delete"
+              color="primary"
+            />
+          </div>
         </div>
 
         <div class="row">

@@ -7,7 +7,8 @@ export default function userUserCreateHook(state) {
   state.name = "";
   state.email = "";
   state.password = "";
-  state.access = "1111"; // FIXME: add some CRUD checkbox to create access value
+  state.selection = [];
+  state.access = "";
   state.breadcrumbs = [
     {
       label: "Dashboard",
@@ -27,6 +28,17 @@ export default function userUserCreateHook(state) {
 
   const $q = useQuasar();
   const router = useRouter();
+
+  const accessGenerator = () => {
+    let selectionSum = 0;
+    state.access = "";
+    state.selection.forEach((item) => {
+      selectionSum += item;
+    });
+    const selectionSumLength = String(selectionSum).length;
+    for (let i = 0; i < 4 - selectionSumLength; i++) state.access += "0";
+    state.access += String(selectionSum);
+  };
 
   const onSubmit = async () => {
     try {
@@ -61,10 +73,13 @@ export default function userUserCreateHook(state) {
     state.name = "";
     state.email = "";
     state.password = "";
+    state.selection = [];
+    state.access = "";
   };
 
   return {
     state,
+    accessGenerator,
     onSubmit,
     onReset,
     validation,
